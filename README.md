@@ -26,11 +26,13 @@ A fast and easy to ease CouchDB iterator for views and all documents.
 
 `.couchdbIterator(couchdbAddr, [view], iterator, [options])`
 
-Calls `iterator` for all `rows` of the database referenced by `couchdbAddr`.
-If `view` is supplied, iterates only over the view's rows.
+Calls `iterator` for all rows of the database referenced by `couchdbAddr`.
+If a `view` is supplied, iterates only over that view's rows.
 
 This library aims to be fast, therefore iteration happens concurrently. The iterator function can be async but beware that order
 is not guaranteed.
+
+Examples:
 
 ```js
 const couchdbIterator = require('couchdb-iterator');
@@ -60,8 +62,7 @@ couchdbIterator('http://localhost:5984/my-db', 'my-designdoc/my-view', (row, ind
 });
 ```
 
-The `couchdbAddr` argument must be connection string with protocol, host, port and database path (e.g.: http://localhost:5984/my-db') or a [nano](https://www.npmjs.com/package/nano) instance.   
-The `view` argument is a string in the form of `designdoc/view` (e.g.: app/byUser); if omitted, all rows from the database will iterated.
+The `couchdbAddr` argument must be connection string with protocol, host, port and database path (e.g.: http://localhost:5984/my-db) or a [nano](https://www.npmjs.com/package/nano) instance. The `view` argument is a string in the form of `designdoc/view` (e.g.: app/byUser).
 
 Available options:
 
