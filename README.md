@@ -41,7 +41,6 @@ const couchdbIterator = require('couchdb-iterator');
 couchdbIterator('http://localhost:5984/my-db', 'my-designdoc/my-view', (row, index) => {
     console.log(index, row.id, row.key, row.value);
     // Do something with `row`; you may return a promise here
-    // The next bulk of rows will only be fetched when all the rows for the current page are handled
 })
 .then((rowsCount) => {
     console.log(`Iteration completed! ${rowsCount}`);
@@ -53,7 +52,6 @@ couchdbIterator('http://localhost:5984/my-db', 'my-designdoc/my-view', (row, ind
 couchdbIterator('http://localhost:5984/my-db', 'my-designdoc/my-view', (row, index) => {
     console.log(index, row.id, row.key, row.value);
     // Do something with `row`; you may return a promise here
-    // The next bulk of rows will only be fetched when all the rows for the current page are handled
 })
 .then((rowsCount) => {
     console.log(`Iteration completed! ${rowsCount}`);
