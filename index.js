@@ -6,7 +6,7 @@ const omit = require('lodash.omit');
 const snakeCase = require('lodash.snakecase');
 const mapKeys = require('lodash.mapkeys');
 const rowsReader = require('./lib/rowsReader');
-const iteratorCaller = require('./lib/IteratorCaller');
+const iteratorCaller = require('./lib/iteratorCaller');
 
 const allowedQueryOptions = [
     'limit', 'skip', 'stale', 'descending', 'startkey', 'startkey_docid',
