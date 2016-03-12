@@ -60,7 +60,7 @@ couchdbIterator('http://localhost:5984/my-db', 'my-designdoc/my-view', (row, ind
 });
 ```
 
-The `couchdbAddr` argument must be connection string with protocol, host, port and database path (e.g.: http://localhost:5984/my-db) or a [nano](https://www.npmjs.com/package/nano) instance. The `view` argument is a string in the form of `designdoc/view` (e.g.: app/byUser).
+The `couchdbAddr` argument must be a connection string with protocol, host, port and database path (e.g.: http://localhost:5984/my-db) or a [nano](https://www.npmjs.com/package/nano) instance. The `view` argument is a string in the form of `designdoc/view` (e.g.: app/byUser).
 
 Available options:
 
