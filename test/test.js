@@ -22,11 +22,11 @@ describe('couchdbIterator()', () => {
     it('should iterate all rows', () => {
         let count = 0;
 
-        return couchdbIterator(prepared.couchdbAddr, (row, index) => {
-            expect(index).to.equal(count);
+        return couchdbIterator(prepared.couchdbAddr, (row) => {
+            expect(row.index).to.equal(count);
             count += 1;
 
-            expect(row).to.have.all.keys('id', 'key', 'value');
+            expect(row).to.have.all.keys('index', 'id', 'key', 'value');
             expect(row.id).to.be.a('string');
             expect(row.key).to.be.a('string');
             expect(row.value).to.be.an('object');
@@ -41,11 +41,11 @@ describe('couchdbIterator()', () => {
     it('should iterate all rows from a view', () => {
         let count = 0;
 
-        return couchdbIterator(prepared.couchdbAddr, 'test/view-1', (row, index) => {
-            expect(index).to.equal(count);
+        return couchdbIterator(prepared.couchdbAddr, 'test/view-1', (row) => {
+            expect(row.index).to.equal(count);
             count += 1;
 
-            expect(row).to.have.all.keys('id', 'key', 'value');
+            expect(row).to.have.all.keys('index', 'id', 'key', 'value');
             expect(row.id).to.be.a('string');
             expect(row.key).to.be.a('array');
             expect(row.value).to.be.an('object');
