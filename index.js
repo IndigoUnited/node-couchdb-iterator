@@ -58,8 +58,8 @@ function getQueryFn(couchdb, view) {
     };
 }
 
-function getQueryOptions(options) {
-    const queryOptions = mapKeys(omit(options, ['nano', 'concurrency', 'bulkSize']), (value, key) => snakeCase(key));
+function getQueryOptions(options, extra) {
+    const queryOptions = mapKeys(omit(options, extra), (value, key) => snakeCase(key));
     const invalidQueryOption = find(Object.keys(queryOptions), (queryOption) => allowedQueryOptions.indexOf(queryOption) === -1);
 
     if (invalidQueryOption) {
@@ -78,12 +78,13 @@ function couchdbIterator(couchdbAddr, view, iterator, options) {
         view = null;
     }
 
-    options = Object.assign({ limit: 500, concurrency: 50 }, options);
+    options = Object.assign({ concurrency: 50 }, options);
+    options.limit = options.limit || options.concurrency * 10;
 
     return new Promise((resolve, reject) => {
         const couchdb = getCouchDb(couchdbAddr, options);
         const queryFn = getQueryFn(couchdb, view);
-        const queryOptions = getQueryOptions(options);
+        const queryOptions = getQueryOptions(options, ['nano', 'concurrency']);
 
         // Start the iteration!
         const rowsReaderStream = rowsReader(queryFn, queryOptions);
@@ -108,12 +109,13 @@ function couchdbIteratorBulk(couchdbAddr, view, iterator, options) {
         view = null;
     }
 
-    options = Object.assign({ limit: 500, bulkSize: 50 }, options);
+    options = Object.assign({ bulkSize: 50 }, options);
+    options.limit = options.limit || options.bulkSize * 10;
 
     return new Promise((resolve, reject) => {
         const couchdb = getCouchDb(couchdbAddr, options);
         const queryFn = getQueryFn(couchdb, view);
-        const queryOptions = getQueryOptions(options);
+        const queryOptions = getQueryOptions(options, ['nano', 'bulkSize']);
 
         // Start the iteration!
         const rowsReaderStream = rowsReader(queryFn, queryOptions);

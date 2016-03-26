@@ -70,7 +70,7 @@ Available options:
 - `nano`: Custom options to be used when creating the [nano]((https://www.npmjs.com/package/nano)) instance, defaults to `null`.
 - The following [querying options](https://wiki.apache.org/couchdb/HTTP_view_API) are available: `limit`, `skip`, `stale`, `descending`, `startkey`, `startkey_docid`, `endkey`, `endkey_docid`, `include_docs` and `inclusive_end` (can be camelCased).
 
-All querying options have no default value, except for `limit` which is `500`. Also, `stale` is automatically set to `ok` after the first iteration to further improve performance.
+All querying options have no default value, except for `limit` which is `concurrency * 10`. Also, `stale` is automatically set to `ok` after the first iteration to further improve performance.
 
 
 ### Bulk iteration
@@ -122,7 +122,7 @@ Available options:
 - `nano`: Custom options to be used when creating the [nano]((https://www.npmjs.com/package/nano)) instance, defaults to `null`.
 - The following [querying options](https://wiki.apache.org/couchdb/HTTP_view_API) are available: `limit`, `skip`, `stale`, `descending`, `startkey`, `startkey_docid`, `endkey`, `endkey_docid`, `include_docs` and `inclusive_end` (can be camelCased).
 
-All querying options have no default value, except for `limit` which is `500`. Also, `stale` is automatically set to `ok` after the first iteration to further improve performance.
+All querying options have no default value, except for `limit` which is `bulkSize * 10`. Also, `stale` is automatically set to `ok` after the first iteration to further improve performance.
 
 
 ## Tests
