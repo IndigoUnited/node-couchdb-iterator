@@ -24,7 +24,9 @@ A fast and easy to ease CouchDB iterator for views and all documents.
 
 ## Usage
 
-### .couchdbIterator(couchdbAddr, [view], iterator, [options])
+### Concurrent row iteration
+
+`couchdbIterator(couchdbAddr, [view], iterator, [options])`
 
 Calls `iterator` for each row of the database referenced by `couchdbAddr`.
 If a `view` is supplied, iterates only over that view's rows.
@@ -71,7 +73,9 @@ Available options:
 All querying options have no default value, except for `limit` which is `500`. Also, `stale` is automatically set to `ok` after the first iteration to further improve performance.
 
 
-### .couchdbIterator.bulk(couchdbAddr, [view], iterator, [options])
+### Bulk iteration
+
+`couchdbIterator.bulk(couchdbAddr, [view], iterator, [options])`
 
 Calls `iterator` for a bulk of rows of the database referenced by `couchdbAddr`.
 If a `view` is supplied, iterates only over that view's rows.
