@@ -130,7 +130,7 @@ All querying options have no default value, except for `limit` which is `500`. A
 `$ npm test`   
 `$ npm test-cov` to get coverage report
 
-The tests expect a running CouchDB in `http://localhost:5984` but you may specify a different address with `COUCHDB`, e.g.: `$ COUCHDB=http://admin:admin@localhost:5984 npm test`;
+The tests expect a running CouchDB in `http://localhost:5984` but you may specify a different address with `COUCHDB`, e.g.: `$ COUCHDB=http://admin:admin@localhost:5984 npm test`.
 
 
 ## License
