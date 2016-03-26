@@ -7,6 +7,7 @@ const snakeCase = require('lodash.snakecase');
 const mapKeys = require('lodash.mapkeys');
 const rowsReader = require('./lib/rowsReader');
 const iteratorCaller = require('./lib/iteratorCaller');
+const iteratorCallerBulk = require('./lib/iteratorCallerBulk');
 
 const allowedQueryOptions = [
     'limit', 'skip', 'stale', 'descending', 'startkey', 'startkey_docid',
@@ -58,7 +59,7 @@ function getQueryFn(couchdb, view) {
 }
 
 function getQueryOptions(options) {
-    const queryOptions = mapKeys(omit(options, ['nano', 'concurrency']), (value, key) => snakeCase(key));
+    const queryOptions = mapKeys(omit(options, ['nano', 'concurrency', 'bulkSize']), (value, key) => snakeCase(key));
     const invalidQueryOption = find(Object.keys(queryOptions), (queryOption) => allowedQueryOptions.indexOf(queryOption) === -1);
 
     if (invalidQueryOption) {
@@ -78,6 +79,7 @@ function couchdbIterator(couchdbAddr, view, iterator, options) {
     }
 
     options = Object.assign({ limit: 500, concurrency: 50 }, options);
+
     return new Promise((resolve, reject) => {
         const couchdb = getCouchDb(couchdbAddr, options);
         const queryFn = getQueryFn(couchdb, view);
@@ -99,4 +101,35 @@ function couchdbIterator(couchdbAddr, view, iterator, options) {
     });
 }
 
+function couchdbIteratorBulk(couchdbAddr, view, iterator, options) {
+    if (typeof view === 'function') {
+        options = iterator;
+        iterator = view;
+        view = null;
+    }
+
+    options = Object.assign({ limit: 500, bulkSize: 50 }, options);
+
+    return new Promise((resolve, reject) => {
+        const couchdb = getCouchDb(couchdbAddr, options);
+        const queryFn = getQueryFn(couchdb, view);
+        const queryOptions = getQueryOptions(options);
+
+        // Start the iteration!
+        const rowsReaderStream = rowsReader(queryFn, queryOptions);
+        const iteratorCallerStream = iteratorCallerBulk(iterator, options.bulkSize);
+
+        rowsReaderStream
+        .on('error', reject)
+        .pipe(iteratorCallerStream)
+        .on('error', reject)
+        .on('end', () => resolve(iteratorCallerStream.getCount()));
+
+        iteratorCallerStream.on('readable', () => {
+            while (iteratorCallerStream.read() !== null) { /* do nothing */ }
+        });
+    });
+}
+
 module.exports = couchdbIterator;
+module.exports.bulk = couchdbIteratorBulk;
