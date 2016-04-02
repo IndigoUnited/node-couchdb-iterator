@@ -1,6 +1,6 @@
 {
   "name": "couchdb-iterator",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A fast and easy to ease CouchDB iterator for views and all documents",
   "main": "index.js",
   "scripts": {
