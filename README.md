@@ -130,7 +130,7 @@ All querying options have no default value, except for `limit` which is `bulkSiz
 `$ npm test`   
 `$ npm test-cov` to get coverage report
 
-The tests expect a running CouchDB in `http://localhost:5984` but you may specify a different address with `COUCHDB`, e.g.: `$ COUCHDB=http://admin:admin@localhost:5984 npm test`.
+The tests expect a running CouchDB in `http://localhost:5984` and will create and destroy `couchdb-iterator-tests` database. You may specify a different address with `COUCHDB`, e.g.: `$ COUCHDB=http://admin:admin@localhost:5984/my-custom-database-for-tests npm test`.
 
 
 ## License

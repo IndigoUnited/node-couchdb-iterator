@@ -3,8 +3,7 @@
 const Promise = require('bluebird');
 const nano = require('nano');
 
-const couchdbAddr = process.env.COUCHDB || 'http://localhost:5984';
-const couchdbDb = 'couchdb-iterator-tests';
+const couchdbAddr = process.env.COUCHDB || 'http://localhost:5984/couchdb-iterator-tests';
 
 // Fixed documents
 // ------------------------------------------
@@ -45,17 +44,17 @@ const designDoc = {
 const documents = [].concat(designDoc, fixedDocuments, randomDocuments);
 
 function prepare() {
-    const couch = nano(couchdbAddr);
-    const couchdb = couch.use(couchdbDb);
+    const couchdb = nano(couchdbAddr);
+    const couch = nano(couchdb.config.url);
 
     Promise.promisifyAll(couch.db);
     Promise.promisifyAll(couchdb);
 
     // Destroy previous db if any
-    return couch.db.destroyAsync(couchdbDb)
+    return couch.db.destroyAsync(couchdb.config.db)
     .catch({ error: 'not_found' }, () => {})
     // Create db
-    .then(() => couch.db.createAsync(couchdbDb))
+    .then(() => couch.db.createAsync(couchdb.config.db))
     // Create documents
     .then(() => {
         return Promise.map(documents, (doc) => couchdb.insertAsync(doc), { concurrency: 15 });
@@ -63,9 +62,9 @@ function prepare() {
     // Resolve with an object to be used by the tests
     .return({
         couchdb,
-        couchdbAddr: `${couchdb.config.url}/${couchdb.config.db}`,
+        couchdbAddr,
         documents,
-        destroy: () => couch.db.destroyAsync(couchdbDb),
+        destroy: () => couch.db.destroyAsync(couchdb.config.db),
     });
 }
 
