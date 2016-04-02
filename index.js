@@ -66,6 +66,8 @@ function getQueryOptions(options, extra) {
         throw new Error(`Query option \`${invalidQueryOption}\` is not allowed`);
     }
 
+    queryOptions.reduce = false;
+
     return queryOptions;
 }
 
