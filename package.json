@@ -35,11 +35,11 @@
     "swift-transform": "^1.0.0"
   },
   "devDependencies": {
-    "@satazor/eslint-config": "^2.0.0",
+    "@satazor/eslint-config": "^3.0.0",
     "bluebird": "^3.3.1",
     "chai": "^3.4.1",
     "coveralls": "^2.11.6",
-    "eslint": "^2.2.0",
+    "eslint": "^3.0.0",
     "istanbul": "^0.4.1",
     "mocha": "^2.3.4"
   },
