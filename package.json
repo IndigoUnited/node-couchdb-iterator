@@ -29,7 +29,7 @@
   "dependencies": {
     "lodash.find": "^4.2.0",
     "lodash.mapkeys": "^4.2.0",
-    "lodash.omit": "^4.1.0",
+    "lodash.omit": "^4.5.0",
     "lodash.snakecase": "^4.0.0",
     "nano": "^6.2.0",
     "swift-transform": "^1.0.0"
