@@ -11,7 +11,7 @@
 [coveralls-image]:https://img.shields.io/coveralls/IndigoUnited/node-couchdb-iterator/master.svg
 [david-dm-url]:https://david-dm.org/IndigoUnited/node-couchdb-iterator
 [david-dm-image]:https://img.shields.io/david/IndigoUnited/node-couchdb-iterator.svg
-[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-couchdb-iterator#info=devDependencies
+[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-couchdb-iterator?type=dev
 [david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-couchdb-iterator.svg
 
 A fast and easy to ease CouchDB iterator for views and all documents.
