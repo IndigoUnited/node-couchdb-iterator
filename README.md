@@ -1,6 +1,6 @@
 # couchdb-iterator
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url] [![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 
 [npm-url]:https://npmjs.org/package/couchdb-iterator
 [downloads-image]:http://img.shields.io/npm/dm/couchdb-iterator.svg
@@ -13,6 +13,8 @@
 [david-dm-image]:https://img.shields.io/david/IndigoUnited/node-couchdb-iterator.svg
 [david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-couchdb-iterator?type=dev
 [david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-couchdb-iterator.svg
+[greenkeeper-image]:https://badges.greenkeeper.io/IndigoUnited/node-couchdb-iterator.svg
+[greenkeeper-url]:https://greenkeeper.io/
 
 A fast and easy to ease CouchDB iterator for views and all documents.
 
