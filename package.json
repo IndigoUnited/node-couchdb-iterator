@@ -32,7 +32,7 @@
     "lodash.omit": "^4.1.0",
     "lodash.snakecase": "^4.0.0",
     "nano": "^6.2.0",
-    "p-try": "^1.0.0",
+    "p-try": "^2.0.0",
     "swift-transform": "^1.0.0"
   },
   "devDependencies": {
