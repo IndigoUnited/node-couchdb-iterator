@@ -31,7 +31,7 @@
     "lodash.mapkeys": "^4.2.0",
     "lodash.omit": "^4.1.0",
     "lodash.snakecase": "^4.0.0",
-    "nano": "^6.2.0",
+    "nano": "^7.0.0",
     "p-try": "^1.0.0",
     "swift-transform": "^1.0.0"
   },
